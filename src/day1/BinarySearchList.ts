@@ -3,16 +3,19 @@ export default function bs_list(haystack: number[], needle: number): boolean {
     let highestIndex = haystack.length - 1;
 
     while (lowestIndex <= highestIndex) {
-        let middleIndex =
-            lowestIndex + Math.ceil((highestIndex - lowestIndex) / 2);
+        let middleIndex = Math.floor(
+            lowestIndex + (highestIndex - lowestIndex) / 2,
+        );
 
-        if (needle === haystack[middleIndex]) {
+        const value = haystack[middleIndex];
+
+        if (needle === value) {
             return true;
         }
 
-        if (needle > haystack[middleIndex]) {
+        if (needle > value) {
             lowestIndex = middleIndex + 1;
-        } else if (needle < haystack[middleIndex]) {
+        } else if (needle < value) {
             highestIndex = middleIndex - 1;
         }
     }
