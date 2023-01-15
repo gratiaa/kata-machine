@@ -1,27 +1,32 @@
 export default function two_crystal_balls(breaks: boolean[]): number {
-    let squareLootOfLength = Math.floor(Math.sqrt(breaks.length));
+    let jumpAmount = Math.floor(Math.sqrt(breaks.length));
 
     if (breaks[0] === true) {
         return 0;
     }
 
-    while (squareLootOfLength > 0) {
-        for (
-            let i = squareLootOfLength;
-            i < breaks.length;
-            i += squareLootOfLength
-        ) {
-            if (breaks[i]) {
-                for (let j = i - 1; j > 0; j--) {
-                    if (!breaks[j]) {
-                        return j + 1;
-                    }
-                }
-            }
-        }
+    let i = jumpAmount;
 
-        squareLootOfLength--;
+    for (; i < breaks.length; i += jumpAmount) {
+        if (breaks[i]) {
+            break;
+        }
     }
+
+    i -= jumpAmount;
+
+    for (let j = 0; j < jumpAmount && i < breaks.length; j++, i++) {
+        if (breaks[i]) {
+            return i;
+        }
+    }
+
+    // why using the var j, not this one?
+    // for (; i < breaks.length; i++) {
+    //     if (breaks[i]) {
+    //         return i;
+    //     }
+    // }
 
     return -1;
 }
