@@ -46,10 +46,6 @@ export default class Queue<T> {
         return firstNode.value;
     }
     peek(): T | undefined {
-        if (this.head) {
-            return this.head.value;
-        }
-
-        return undefined;
+        return this.head?.value;
     }
 }
