@@ -27,8 +27,6 @@ export default class Queue<T> {
         }
 
         this.length++;
-
-        console.log(this.head?.value, this.tail?.value);
     }
     deque(): T | undefined {
         const firstNode = this.head;
