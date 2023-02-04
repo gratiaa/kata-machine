@@ -20,11 +20,9 @@ export default class Stack<T> {
         if (this.head) {
             const currentHeadNode = this.head;
             newNode.prev = currentHeadNode;
-            this.head = newNode;
-        } else {
-            this.head = newNode;
         }
 
+        this.head = newNode;
         this.length++;
     }
     pop(): T | undefined {
